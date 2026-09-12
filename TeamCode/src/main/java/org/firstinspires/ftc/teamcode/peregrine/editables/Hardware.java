@@ -22,6 +22,8 @@ public class Hardware {
     public DcMotor BR;
     public DcMotor BL;
 
+    public DcMotor intake;
+
     public Hardware(PeregrineOpMode opMode) {
         odo = opMode.hardwareMap.get(GoBildaPinpointDriver.class, "odo");
         // Pod positions relative to the robot's tracking centre. The drivetrain fit is sensitive to this
@@ -43,6 +45,11 @@ public class Hardware {
         BL = opMode.hardwareMap.get(DcMotor.class, "BL");
         BL.setDirection(RobotParams.BLDirection);
         BL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        intake = opMode.hardwareMap.get(DcMotor.class, "intake");
+        intake.setDirection(RobotParams.intakeDirection);
+        intake.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
     }
 
 }
