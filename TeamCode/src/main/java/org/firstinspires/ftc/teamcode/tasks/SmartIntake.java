@@ -48,7 +48,9 @@ public class SmartIntake extends Task {
 
     @Override
     public boolean run() {
-        if (detectColor() == colorToReject) {
+        Color detectedColor = detectColor();
+        opMode.telem.addData("Detected Color", detectedColor);
+        if (detectedColor == colorToReject) {
             rejectTime.reset();
             isRejecting = true;
         }
@@ -82,6 +84,11 @@ public class SmartIntake extends Task {
         double redProportion   = opMode.hardware.colorSensor.red()/total;
         double blueProportion  = opMode.hardware.colorSensor.blue()/total;
         double greenProportion = opMode.hardware.colorSensor.green()/total;
+
+        opMode.telem.addData("Red Proportion", redProportion);
+        opMode.telem.addData("Blue Proportion", blueProportion);
+        opMode.telem.addData("Yellow Proportion", redProportion + greenProportion);
+        opMode.telem.addData("Yellow Ratio", redProportion/greenProportion);
 
         if (redProportion >= redThreshold) {
             return Color.RED;

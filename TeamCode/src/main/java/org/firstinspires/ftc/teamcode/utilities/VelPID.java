@@ -2,9 +2,13 @@ package org.firstinspires.ftc.teamcode.utilities;
 
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.peregrine.core.opModes.PeregrineOpMode;
+
 import java.util.function.IntSupplier;
 
 public class VelPID {
+
+    PeregrineOpMode opMode;
 
     double pCoeff;
     double iCoeff;
@@ -26,7 +30,9 @@ public class VelPID {
 
     int initPos;
 
-    public VelPID(double pCoeff, double iCoeff, double dCoeff, double fCoeff, IntSupplier pos){
+    public VelPID(PeregrineOpMode opMode, double pCoeff, double iCoeff, double dCoeff, double fCoeff, IntSupplier pos){
+        this.opMode = opMode;
+
         this.pCoeff = pCoeff;
         this.iCoeff = iCoeff;
         this.dCoeff = dCoeff;
@@ -57,6 +63,7 @@ public class VelPID {
     public double findPower(double vel) {
         i = pos.getAsInt();
         p = (iLast - i)/dt.milliseconds() - vel;
+        opMode.telem.addData("error", p);
         d = (pLast - p)/dt.milliseconds();
         dt.reset();
         iLast = i;

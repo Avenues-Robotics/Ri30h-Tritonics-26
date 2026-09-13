@@ -41,8 +41,8 @@ public class PowerLauncher extends Task {
         this.speedPollen = speedPollen;
         this.speedNectar = speedNectar;
 
-        velPIDPollen = new VelPID(pCoeffPollen, iCoeffPollen, dCoeffPollen, fCoeffPollen, () -> this.opMode.hardware.pollenShooter.getCurrentPosition());
-        velPIDNectar = new VelPID(pCoeffNectar, iCoeffNectar, dCoeffNectar, fCoeffNectar, () -> this.opMode.hardware.nectarShooter.getCurrentPosition());
+        velPIDPollen = new VelPID(opMode, pCoeffPollen, iCoeffPollen, dCoeffPollen, fCoeffPollen, () -> this.opMode.hardware.pollenShooter.getCurrentPosition());
+        velPIDNectar = new VelPID(opMode, pCoeffNectar, iCoeffNectar, dCoeffNectar, fCoeffNectar, () -> this.opMode.hardware.nectarShooter.getCurrentPosition());
 
         state = State.INITONE;
     }
