@@ -21,6 +21,7 @@ import org.firstinspires.ftc.teamcode.tasks.TransferTeleop;
 public class TeleopRed extends PeregrineTeleop {
 
     public static double intakePower = 0.5;
+    public static double minimumIntakePower = 0.1;
     public static double speedPollen = 1.2;
     public static double speedNectar = 1.65;
     public static double speedStore  = 0.4;
@@ -29,21 +30,23 @@ public class TeleopRed extends PeregrineTeleop {
     @Override
     public Task defineTasks() {
         Task intake = new TeleopTask(this, new SmartIntake(this, intakePower), () -> gamepad1.right_trigger <= 0.7, true);
+        Task minIntake = new TeleopTask(this, new SmartIntake(this, minimumIntakePower), () -> gamepad1.right_trigger > 0.7, true);
         Task powerLauncher = new PowerLauncher(this, speedPollen, speedNectar);
         Task transferTeleop = new TransferTeleop(this, speedStore, speedLaunch, () -> gamepad1.right_trigger > 0.7);
 
-//        Task leftHive = new TeleopTask(this, new Drive(this, "left-hive"), () -> gamepad1.dpad_left, true);
-//        Task rightHive = new TeleopTask(this, new Drive(this, "right-hive"), () -> gamepad1.dpad_right, true);
-//        Task nearFlower = new TeleopTask(this, new Drive(this, "near-flower"), () -> gamepad1.a, true);
-//        Task rightFlower = new TeleopTask(this, new Drive(this, "right-flower"), () -> gamepad1.b, true);
-//        Task farFlower = new TeleopTask(this, new Drive(this, "far-flower"), () -> gamepad1.y, true);
-//        Task leftFlower = new TeleopTask(this, new Drive(this, "left-flower"), () -> gamepad1.x, true);
-//
+        Task leftHive = new TeleopTask(this, new Drive(this, "left-hive"), () -> gamepad1.dpad_left, true);
+        Task rightHive = new TeleopTask(this, new Drive(this, "right-hive"), () -> gamepad1.dpad_right, true);
+        Task nearFlower = new TeleopTask(this, new Drive(this, "near-flower"), () -> gamepad1.a, true);
+        Task rightFlower = new TeleopTask(this, new Drive(this, "right-flower"), () -> gamepad1.b, true);
+        Task farFlower = new TeleopTask(this, new Drive(this, "far-flower"), () -> gamepad1.y, true);
+        Task leftFlower = new TeleopTask(this, new Drive(this, "left-flower"), () -> gamepad1.x, true);
+
         Task drive = new TeleopTask(this, new TeleopMovement(this), () ->
                 !(gamepad1.dpad_left || gamepad1.dpad_right || gamepad1.a
                         || gamepad1.b || gamepad1.x || gamepad1.y), true);
 
-        return new ParallelTask(intake, powerLauncher, transferTeleop, drive);
+        return new ParallelTask(intake, minIntake, powerLauncher, transferTeleop, drive, leftHive,
+                rightHive, nearFlower, rightFlower, farFlower, leftFlower);
     }
 
     @Override
@@ -53,7 +56,7 @@ public class TeleopRed extends PeregrineTeleop {
 
     @Override
     public Pose2D startingPose() {
-        return new Pose2D(DistanceUnit.CM, 30, 30, AngleUnit.RADIANS, 0.5);
+        return new Pose2D(DistanceUnit.CM, 25.44, 15.56, AngleUnit.RADIANS, 0);
     }
 
     @Override
