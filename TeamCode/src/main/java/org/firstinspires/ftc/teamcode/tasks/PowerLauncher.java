@@ -22,19 +22,19 @@ public class PowerLauncher extends Task {
 
     VelPID velPIDPollen;
 
-    public static double pCoeffPollen = 1; //todo tune
-    public static double iCoeffPollen = 1;
-    public static double dCoeffPollen = 1;
-    public static double fCoeffPollen = 1;
+    public static double pCoeffPollen = 5;
+    public static double iCoeffPollen = 0;
+    public static double dCoeffPollen = 0;
+    public static double fCoeffPollen = -0.45;
 
     double speedNectar;
 
     VelPID velPIDNectar;
 
-    public static double pCoeffNectar = 1; //todo tune
-    public static double iCoeffNectar = 1;
-    public static double dCoeffNectar = 1;
-    public static double fCoeffNectar = 1;
+    public static double pCoeffNectar = 5;
+    public static double iCoeffNectar = 0;
+    public static double dCoeffNectar = 0;
+    public static double fCoeffNectar = -0.45;
 
     public PowerLauncher(PeregrineOpMode opMode, double speedPollen, double speedNectar) {
         this.opMode = opMode;

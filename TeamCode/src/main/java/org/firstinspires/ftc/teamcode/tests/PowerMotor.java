@@ -11,10 +11,11 @@ public class PowerMotor extends LinearOpMode {
 
     public static DcMotor.Direction direction = DcMotor.Direction.FORWARD;
     public static double power = 1;
+    public static String deviceName = "FR";
 
     @Override
     public void runOpMode(){
-        DcMotor FR = hardwareMap.get(DcMotor.class, "FR");
+        DcMotor FR = hardwareMap.get(DcMotor.class, deviceName);
         FR.setDirection(direction);
         FR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 

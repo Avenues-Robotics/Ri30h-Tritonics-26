@@ -27,6 +27,8 @@ public class TeleopTask extends Task {
         if(holdRequired){
             if(condition.getAsBoolean()) {
                 task.run();
+            } else {
+                task.end();
             }
         } else {
             if (condition.getAsBoolean()) toggled = true;

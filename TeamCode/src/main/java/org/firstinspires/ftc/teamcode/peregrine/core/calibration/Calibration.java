@@ -53,6 +53,11 @@ public class Calibration extends PeregrineTeleop {
     }
 
     @Override
+    public Alliance defineAlliance() {
+        return Alliance.BLUE;
+    }
+
+    @Override
     public void finish() {
 
     }
