@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.peregrine.editables;
 
 import com.qualcomm.hardware.gobilda.GoBildaPinpointDriver;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.peregrine.core.opModes.PeregrineOpMode;
@@ -23,6 +24,11 @@ public class Hardware {
     public DcMotor BL;
 
     public DcMotor intake;
+    public DcMotor transfer;
+    public DcMotor nectarShooter;
+    public DcMotor pollenShooter;
+
+    public ColorSensor colorSensor;
 
     public Hardware(PeregrineOpMode opMode) {
         odo = opMode.hardwareMap.get(GoBildaPinpointDriver.class, "odo");
@@ -49,7 +55,17 @@ public class Hardware {
         intake = opMode.hardwareMap.get(DcMotor.class, "intake");
         intake.setDirection(RobotParams.intakeDirection);
         intake.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        transfer = opMode.hardwareMap.get(DcMotor.class, "transfer");
+        transfer.setDirection(RobotParams.transferDirection);
+        transfer.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        nectarShooter = opMode.hardwareMap.get(DcMotor.class, "nectarShooter");
+        nectarShooter.setDirection(RobotParams.nectarShooterDirection);
+        nectarShooter.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        pollenShooter = opMode.hardwareMap.get(DcMotor.class, "pollenShooter");
+        pollenShooter.setDirection(RobotParams.pollenShooterDirection);
+        pollenShooter.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
+        colorSensor = opMode.hardwareMap.get(ColorSensor.class, "colorSensor");
     }
 
 }

@@ -25,7 +25,7 @@ public class PowerIntake extends Task {
 
     @Override
     public Task reset() {
-        return new PowerIntake(opMode);
+        return new PowerIntake(opMode, power);
     }
 }
 

@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.peregrine.editables;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.hardware.gobilda.GoBildaPinpointDriver;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.peregrine.core.utilities.Enums;
@@ -37,5 +38,7 @@ public final class RobotParams {
     public static DcMotor.Direction BLDirection = DcMotor.Direction.FORWARD;
 
     public static DcMotor.Direction intakeDirection = DcMotor.Direction.FORWARD;
-
+    public static DcMotor.Direction transferDirection = DcMotor.Direction.FORWARD;
+    public static DcMotor.Direction nectarShooterDirection = DcMotor.Direction.FORWARD;
+    public static DcMotor.Direction pollenShooterDirection = DcMotor.Direction.FORWARD;
 }

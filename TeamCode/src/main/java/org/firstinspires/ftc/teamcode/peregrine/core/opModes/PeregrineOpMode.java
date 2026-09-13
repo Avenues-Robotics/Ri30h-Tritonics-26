@@ -23,6 +23,13 @@ import org.firstinspires.ftc.teamcode.peregrine.editables.Hardware;
 
 public abstract class PeregrineOpMode extends LinearOpMode {
 
+    public enum Alliance {
+        RED,
+        BLUE
+    }
+
+    public Alliance alliance;
+
     /**This is the hardware object that contains all maps to robot hardware and that can be accessed through the opMode by any other class*/
     public Hardware hardware;
 
@@ -52,6 +59,8 @@ public abstract class PeregrineOpMode extends LinearOpMode {
 
     //This is the regular opMode function, being mapped to those below
     public void runOpMode() {
+
+        alliance = defineAlliance();
 
         // Construction order matters: Localizer needs hardware and telem, and OptimalityEngine needs telem.
         telem = FtcDashboard.getInstance().getTelemetry();
@@ -97,5 +106,7 @@ public abstract class PeregrineOpMode extends LinearOpMode {
 
     /**Is run once at the end of the opMode.*/
     public abstract void end();
+
+    public abstract Alliance defineAlliance();
 
 }
